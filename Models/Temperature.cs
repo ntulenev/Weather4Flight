@@ -13,7 +13,9 @@ public class Temperature
     public Temperature(decimal value)
     {
         if (value < AbsoluteZero)
+        {
             throw new ArgumentException($"Temperature cannot be below absolute zero ({AbsoluteZero}°C)");
+        }
 
         _value = value;
     }
@@ -31,11 +33,17 @@ public class Temperature
         get
         {
             if (_value < ColdThreshold)
+            {
                 return TemperatureCategory.Cold;
+            }
             else if (_value > HotThreshold)
+            {
                 return TemperatureCategory.Hot;
+            }
             else
+            {
                 return TemperatureCategory.Normal;
+            }
         }
     }
 
