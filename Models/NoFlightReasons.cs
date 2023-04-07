@@ -24,7 +24,12 @@
         /// <summary>
         /// The wind speed is too high for flying.
         /// </summary>
-        Wind
+        Wind,
+
+        /// <summary>
+        /// Precipitations that could affect flight.
+        /// </summary>
+        ImportantPrecipitations
     }
 
 }

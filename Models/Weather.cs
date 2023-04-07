@@ -11,19 +11,14 @@
         public Temperature Temperature { get; }
 
         /// <summary>
-        /// Gets the pressure of the location.
-        /// </summary>
-        public Pressure Pressure { get; }
-
-        /// <summary>
-        /// Gets the humidity of the location.
-        /// </summary>
-        public Humidity Humidity { get; }
-
-        /// <summary>
         /// Gets the wind speed of the location.
         /// </summary>
         public WindSpeed WindSpeed { get; }
+
+        /// <summary>
+        /// Precipitations
+        /// </summary>
+        public PrecipitationType Precipitations { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Weather"/> class.
@@ -33,17 +28,15 @@
         /// <param name="humidity">The humidity of the location.</param>
         /// <param name="windSpeed">The wind speed of the location.</param>
         /// <exception cref="ArgumentNullException">Thrown if any of the parameters are null.</exception>
-        public Weather(Temperature temperature, Pressure pressure, Humidity humidity, WindSpeed windSpeed)
+        public Weather(Temperature temperature, WindSpeed windSpeed, PrecipitationType precipitations)
         {
             ArgumentNullException.ThrowIfNull(temperature);
-            ArgumentNullException.ThrowIfNull(pressure);
-            ArgumentNullException.ThrowIfNull(humidity);
             ArgumentNullException.ThrowIfNull(windSpeed);
 
             Temperature = temperature;
-            Pressure = pressure;
-            Humidity = humidity;
             WindSpeed = windSpeed;
+
+            Precipitations = precipitations;
         }
 
         public FlightDecision CreateFlightDecision()
