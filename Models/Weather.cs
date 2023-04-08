@@ -39,9 +39,38 @@
             Precipitations = precipitations;
         }
 
+        /// <summary>
+        /// Determines whether flying is recommended based on the weather conditions.
+        /// </summary>
+        /// <returns>A <see cref="FlightDecision"/> object indicating whether flying is recommended, and if not, the reasons why.</returns>
         public FlightDecision CreateFlightDecision()
         {
-            throw new NotImplementedException();
+            var reasons = (Temperature.Category switch
+            {
+                TemperatureCategory.Cold => NoFlightReasons.ColdTemperature,
+                TemperatureCategory.Hot => NoFlightReasons.HotTemperature,
+                _ => NoFlightReasons.None
+            })
+            |
+            (WindSpeed.IsStrongWind ? NoFlightReasons.Wind : NoFlightReasons.None)
+            |
+            (Precipitations switch
+            {
+                PrecipitationType.None or
+                PrecipitationType.Drizzle or
+                PrecipitationType.Mist or
+                PrecipitationType.Smoke or
+                PrecipitationType.Haze or
+                PrecipitationType.Sand or
+                PrecipitationType.Dust or
+                PrecipitationType.Foggy => NoFlightReasons.None,
+                _ => NoFlightReasons.ImportantPrecipitations
+            });
+
+            return reasons == NoFlightReasons.None
+                ? new FlightDecision(FlightRecomendation.GoodForFlight, NoFlightReasons.None)
+                : new FlightDecision(FlightRecomendation.BadForFlight, reasons);
         }
+
     }
 }
