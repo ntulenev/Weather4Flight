@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Tests", "Models.Tests\Models.Tests.csproj", "{9F17CF6B-0D2B-4097-8742-47875832A3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeatherMap", "OpenWeatherMap\OpenWeatherMap.csproj", "{75989B79-E9A9-44F0-8902-9004F5A2C218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeatherMap", "OpenWeatherMap\OpenWeatherMap.csproj", "{75989B79-E9A9-44F0-8902-9004F5A2C218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "Abstractions\Abstractions.csproj", "{D7212F4A-6601-4219-B8D1-520DEAD94CEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.Build.0 = Release|x64
 		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.ActiveCfg = Release|x64
 		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.Build.0 = Release|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Debug|x64.ActiveCfg = Debug|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Debug|x64.Build.0 = Debug|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Debug|x64.ActiveCfg = Debug|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Debug|x64.Build.0 = Debug|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Release|x64.ActiveCfg = Release|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Release|x64.Build.0 = Release|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Release|x64.ActiveCfg = Release|x64
+		{D7212F4A-6601-4219-B8D1-520DEAD94CEB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
