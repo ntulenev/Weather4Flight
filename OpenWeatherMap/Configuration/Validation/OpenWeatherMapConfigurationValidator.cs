@@ -20,6 +20,11 @@ public class OpenWeatherMapConfigurationValidator : IValidateOptions<OpenWeather
             return ValidateOptionsResult.Fail("API key is required.");
         }
 
+        if (string.IsNullOrWhiteSpace(options.ApiUrl))
+        {
+            return ValidateOptionsResult.Fail("API url template is required.");
+        }
+
         return ValidateOptionsResult.Success;
     }
 }
