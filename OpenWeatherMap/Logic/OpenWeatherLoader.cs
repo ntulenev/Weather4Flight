@@ -2,6 +2,7 @@
 
 using OpenWeatherMap.Configuration;
 using OpenWeatherMap.DTO;
+using OpenWeatherMap.Exceptions;
 
 using System.Text.Json;
 
@@ -38,6 +39,8 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     /// <inheritdoc/>
     /// <exception cref="System.ArgumentNullException">Thrown when the city parameter is null.</exception>
     /// <exception cref="System.ArgumentException">Thrown when the city parameter is empty or whitespace.</exception>
+    /// <exception cref="OpenWeatherMapException">Thrown when an error occurs while retrieving weather data from the OpenWeatherMap API.</exception>
+
     public async Task<WeatherForecast> GetWeatherForecastAsync(string city, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(city);
@@ -56,8 +59,7 @@ public class OpenWeatherLoader : IOpenWeatherLoader
         }
         else
         {
-            // TODO Add custom exception type
-            throw new Exception($"Error retrieving weather forecast: {responseBody}");
+            throw new OpenWeatherMapException($"Error retrieving weather forecast: {responseBody}");
         }
     }
 
