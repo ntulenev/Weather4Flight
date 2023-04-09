@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{604ED1C0-9158-43E4-8399-26281EF044F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.Tests", "Models.Tests\Models.Tests.csproj", "{9F17CF6B-0D2B-4097-8742-47875832A3E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Tests", "Models.Tests\Models.Tests.csproj", "{9F17CF6B-0D2B-4097-8742-47875832A3E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeatherMap", "OpenWeatherMap\OpenWeatherMap.csproj", "{75989B79-E9A9-44F0-8902-9004F5A2C218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{9F17CF6B-0D2B-4097-8742-47875832A3E2}.Release|x64.Build.0 = Release|x64
 		{9F17CF6B-0D2B-4097-8742-47875832A3E2}.Release|x64.ActiveCfg = Release|x64
 		{9F17CF6B-0D2B-4097-8742-47875832A3E2}.Release|x64.Build.0 = Release|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Debug|x64.ActiveCfg = Debug|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Debug|x64.Build.0 = Debug|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Debug|x64.ActiveCfg = Debug|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Debug|x64.Build.0 = Debug|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.ActiveCfg = Release|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.Build.0 = Release|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.ActiveCfg = Release|x64
+		{75989B79-E9A9-44F0-8902-9004F5A2C218}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
