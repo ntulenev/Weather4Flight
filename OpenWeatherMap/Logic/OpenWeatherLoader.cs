@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 using OpenWeatherMap.Configuration;
 using OpenWeatherMap.DTO;
@@ -18,13 +19,16 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     /// </summary>
     /// <param name="httpClient">The HTTP client used to make API requests.</param>
     /// <param name="options">The options containing the OpenWeatherMap API key and URL.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown when the httpClient or options parameters are null.</exception>
+    /// <param name="logger">The logger used for logging events during API requests.</param>
+    /// <exception cref="System.ArgumentNullException">Thrown when the httpClient or logger or options parameters are null.</exception>
     /// <exception cref="System.ArgumentException">Thrown when the options value is not set.</exception>
-    public OpenWeatherLoader(HttpClient httpClient, IOptions<OpenWeatherMapConfiguration> options)
+    public OpenWeatherLoader(HttpClient httpClient,
+                             IOptions<OpenWeatherMapConfiguration> options,
+                             ILogger<OpenWeatherLoader> logger)
     {
-
         ArgumentNullException.ThrowIfNull(httpClient);
         ArgumentNullException.ThrowIfNull(options);
+        ArgumentNullException.ThrowIfNull(logger);
 
         if (options.Value is null)
         {
@@ -34,6 +38,7 @@ public class OpenWeatherLoader : IOpenWeatherLoader
         _httpClient = httpClient;
         _apiKey = options.Value.ApiKey;
         _apiPath = options.Value.ApiUrl;
+        _logger = logger;
     }
 
     /// <inheritdoc/>
@@ -50,8 +55,12 @@ public class OpenWeatherLoader : IOpenWeatherLoader
 
         var url = string.Format(_apiPath, city, _apiKey);
 
+        _logger.LogInformation("URL {url}", url);
+
         HttpResponseMessage response = await _httpClient.GetAsync(url, cancellationToken);
         var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        _logger.LogInformation("Response IsSuccesess : {IsSuccessStatusCode} : {responseBody}", response.IsSuccessStatusCode, responseBody);
 
         if (response.IsSuccessStatusCode)
         {
@@ -66,4 +75,5 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
     private readonly string _apiPath;
+    private readonly ILogger<OpenWeatherLoader> _logger;
 }
