@@ -17,7 +17,7 @@ public class SystemTextJsonSerializer : IJsonSerializer
 
         if (string.IsNullOrWhiteSpace(json))
         {
-            throw new ArgumentException("Json string can't be whitespace");
+            throw new ArgumentException("Json string can't be whitespace", nameof(json));
         }
 
         return JsonSerializer.Deserialize<T>(json)!;
