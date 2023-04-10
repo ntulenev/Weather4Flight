@@ -5,7 +5,6 @@ using OpenWeatherMap.Configuration;
 using OpenWeatherMap.DTO;
 using OpenWeatherMap.Exceptions;
 using OpenWeatherMap.Serialization;
-using System.Text.Json;
 
 namespace OpenWeatherMap.Logic;
 
