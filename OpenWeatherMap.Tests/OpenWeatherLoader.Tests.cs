@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 
 using Moq;
 using Moq.Protected;
+
 using OpenWeatherMap.Configuration;
 using OpenWeatherMap.DTO;
 using OpenWeatherMap.Exceptions;
@@ -213,81 +214,89 @@ public class OpenWeatherLoaderTests
         await act.Should().ThrowAsync<OperationCanceledException>();
     }
 
-    //[Fact(DisplayName = "GetWeatherForecastAsync should throw OpenWeatherMapException when HTTP response is not successful")]
-    //public async Task GetWeatherForecastAsync_Should_Throw_OpenWeatherMapException_When_HTTP_Response_Is_Not_Successful()
-    //{
-    //    // Arrange
-    //    var httpClientMock = new Mock<HttpClient>(MockBehavior.Strict);
-    //    var optionsMock = new Mock<IOptions<OpenWeatherMapConfiguration>>(MockBehavior.Strict);
-    //    var jsonSerializerMock = new Mock<IJsonSerializer>(MockBehavior.Strict);
-    //    var loggerMock = new Mock<ILogger<OpenWeatherLoader>>(MockBehavior.Strict);
+    [Fact(DisplayName = "GetWeatherForecastAsync should throw OpenWeatherMapException when HTTP response is not successful")]
+    public async Task GetWeatherForecastAsync_Should_Throw_OpenWeatherMapException_When_HTTP_Response_Is_Not_Successful()
+    {
+        // Arrange
+        var optionsMock = new Mock<IOptions<OpenWeatherMapConfiguration>>(MockBehavior.Strict);
+        var jsonSerializerMock = new Mock<IJsonSerializer>(MockBehavior.Strict);
+        var loggerMock = new Mock<ILogger<OpenWeatherLoader>>();
 
-    //    var loader = new OpenWeatherLoader(
-    //         httpClientMock.Object,
-    //         optionsMock.Object,
-    //         jsonSerializerMock.Object,
-    //         loggerMock.Object);
+        var city = "London";
+        var cancellationToken = CancellationToken
+                .None;
+        var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}";
+        var apiKey = "test-api-key";
+        var url = string.Format(apiUrl, city, apiKey);
+        var responseBody = "Error retrieving weather forecast";
 
-    //    var city = "London";
-    //    var cancellationToken = CancellationToken
-    //            .None;
-    //    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}";
-    //    var apiKey = "test-api-key";
-    //    var url = string.Format(apiUrl, city, apiKey);
-    //    var responseBody = "Error retrieving weather forecast";
-    //    var response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-    //    response.Content = new StringContent(responseBody);
+        optionsMock.SetupGet(x => x.Value).Returns(new OpenWeatherMapConfiguration { ApiKey = apiKey, ApiUrl = apiUrl });
+        var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        handlerMock.Protected().Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(a => a.Method.ToString() == "GET" && a.RequestUri!.ToString() == url),
+                ItExpr.IsAny<CancellationToken>()
+            )
+           .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.BadRequest)
+           {
+               Content = new StringContent(responseBody)
+           });
 
-    //    optionsMock.SetupGet(x => x.Value).Returns(new OpenWeatherMapConfiguration { ApiKey = apiKey, ApiUrl = apiUrl });
-    //    httpClientMock
-    //        .Protected()
-    //        .Setup<Task<HttpResponseMessage>>("SendAsync", It.Is<HttpRequestMessage>(req => req.RequestUri!.ToString() == url), It.Is<CancellationToken>(x => x == cancellationToken))
-    //        .ReturnsAsync(response);
-    //    jsonSerializerMock.Setup(x => x.Deserialize<WeatherForecast>(responseBody)).Returns((WeatherForecast)null!);
+        jsonSerializerMock.Setup(x => x.Deserialize<WeatherForecast>(responseBody)).Returns((WeatherForecast)null!);
+        var loader = new OpenWeatherLoader(
+            new HttpClient(handlerMock.Object),
+            optionsMock.Object,
+            jsonSerializerMock.Object,
+            loggerMock.Object);
 
-    //    // Act
-    //    Func<Task> act = async () => await loader.GetWeatherForecastAsync(city, cancellationToken);
+        // Act
+        Func<Task> act = async () => await loader.GetWeatherForecastAsync(city, cancellationToken);
 
-    //    // Assert
-    //    await act.Should().ThrowAsync<OpenWeatherMapException>().WithMessage(responseBody);
-    //}
+        // Assert
+        await act.Should().ThrowAsync<OpenWeatherMapException>();
+    }
 
-    //[Fact(DisplayName = "GetWeatherForecastAsync should return WeatherForecast when HTTP response is successful")]
-    //public async Task GetWeatherForecastAsync_Should_Return_WeatherForecast_When_HTTP_Response_Is_Successful()
-    //{
-    //    // Arrange
-    //    var httpClientMock = new Mock<HttpClient>(MockBehavior.Strict);
-    //    var optionsMock = new Mock<IOptions<OpenWeatherMapConfiguration>>(MockBehavior.Strict);
-    //    var jsonSerializerMock = new Mock<IJsonSerializer>(MockBehavior.Strict);
-    //    var loggerMock = new Mock<ILogger<OpenWeatherLoader>>(MockBehavior.Strict);
+    [Fact(DisplayName = "GetWeatherForecastAsync should return WeatherForecast when HTTP response is successful")]
+    public async Task GetWeatherForecastAsync_Should_Return_WeatherForecast_When_HTTP_Response_Is_Successful()
+    {
+        // Arrange
+        var optionsMock = new Mock<IOptions<OpenWeatherMapConfiguration>>(MockBehavior.Strict);
+        var jsonSerializerMock = new Mock<IJsonSerializer>(MockBehavior.Strict);
+        var loggerMock = new Mock<ILogger<OpenWeatherLoader>>();
 
-    //    var city = "London";
-    //    var cancellationToken = CancellationToken.None;
-    //    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}";
-    //    var apiKey = "test-api-key";
-    //    var url = string.Format(apiUrl, city, apiKey);
-    //    var response = new HttpResponseMessage(HttpStatusCode.OK);
-    //    var responseBody = "response body";
-    //    var weatherForecast = new WeatherForecast();
-    //    response.Content = new StringContent(responseBody);
+        var city = "London";
+        var cancellationToken = CancellationToken.None;
+        var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}";
+        var apiKey = "test-api-key";
+        var url = string.Format(apiUrl, city, apiKey);
+        var response = new HttpResponseMessage(HttpStatusCode.OK);
+        var responseBody = "response body";
+        var weatherForecast = new WeatherForecast();
+        response.Content = new StringContent(responseBody);
 
-    //    optionsMock.SetupGet(x => x.Value).Returns(new OpenWeatherMapConfiguration { ApiKey = apiKey, ApiUrl = apiUrl });
-    //    httpClientMock
-    //        .Protected()
-    //        .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(req => req.RequestUri!.ToString() == url), ItExpr.Is<CancellationToken>(x => x == cancellationToken))
-    //        .ReturnsAsync(response);
-    //    jsonSerializerMock.Setup(x => x.Deserialize<WeatherForecast>(responseBody)).Returns(weatherForecast);
+        optionsMock.SetupGet(x => x.Value).Returns(new OpenWeatherMapConfiguration { ApiKey = apiKey, ApiUrl = apiUrl });
+        var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        handlerMock.Protected().Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(a => a.Method.ToString() == "GET" && a.RequestUri!.ToString() == url),
+                ItExpr.IsAny<CancellationToken>()
+            )
+           .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK)
+           {
+               Content = new StringContent(responseBody)
+           });
+        jsonSerializerMock.Setup(x => x.Deserialize<WeatherForecast>(responseBody)).Returns(weatherForecast);
 
-    //    var loader = new OpenWeatherLoader(
-    //         httpClientMock.Object,
-    //         optionsMock.Object,
-    //         jsonSerializerMock.Object,
-    //         loggerMock.Object);
+        var loader = new OpenWeatherLoader(
+             new HttpClient(handlerMock.Object),
+             optionsMock.Object,
+             jsonSerializerMock.Object,
+             loggerMock.Object);
 
-    //    // Act
-    //    var result = await loader.GetWeatherForecastAsync(city, cancellationToken);
+        // Act
+        var result = await loader.GetWeatherForecastAsync(city, cancellationToken);
 
-    //    // Assert
-    //    result.Should().Be(weatherForecast);
-    //}
+        // Assert
+        result.Should().Be(weatherForecast);
+    }
 }
