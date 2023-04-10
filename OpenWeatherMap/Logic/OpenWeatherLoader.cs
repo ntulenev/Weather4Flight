@@ -54,6 +54,11 @@ public class OpenWeatherLoader : IOpenWeatherLoader
         ArgumentNullException.ThrowIfNull(city);
         ArgumentException.ThrowIfNullOrEmpty(city);
 
+        if (string.IsNullOrWhiteSpace(city))
+        {
+            throw new ArgumentException("City string can't be whitespace", nameof(city));
+        }
+
         cancellationToken.ThrowIfCancellationRequested();
 
         var url = string.Format(_apiPath, city, _apiKey);
