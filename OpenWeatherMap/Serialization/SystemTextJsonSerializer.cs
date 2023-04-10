@@ -14,6 +14,12 @@ public class SystemTextJsonSerializer : IJsonSerializer
     {
         ArgumentNullException.ThrowIfNull(json);
         ArgumentException.ThrowIfNullOrEmpty(json);
+
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            throw new ArgumentException("Json string can't be whitespace");
+        }
+
         return JsonSerializer.Deserialize<T>(json)!;
     }
 }
