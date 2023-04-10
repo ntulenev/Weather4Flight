@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using OpenWeatherMap.Configuration;
 using OpenWeatherMap.DTO;
 using OpenWeatherMap.Exceptions;
-
+using OpenWeatherMap.Serialization;
 using System.Text.Json;
 
 namespace OpenWeatherMap.Logic;
@@ -19,15 +19,18 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     /// </summary>
     /// <param name="httpClient">The HTTP client used to make API requests.</param>
     /// <param name="options">The options containing the OpenWeatherMap API key and URL.</param>
+    /// <param name="jsonSerializer">The JSON serializer used to deserialize the API response.</param>
     /// <param name="logger">The logger used for logging events during API requests.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown when the httpClient or logger or options parameters are null.</exception>
+    /// <exception cref="System.ArgumentNullException">Thrown when any parameter is null.</exception>
     /// <exception cref="System.ArgumentException">Thrown when the options value is not set.</exception>
     public OpenWeatherLoader(HttpClient httpClient,
                              IOptions<OpenWeatherMapConfiguration> options,
+                             IJsonSerializer jsonSerializer,
                              ILogger<OpenWeatherLoader> logger)
     {
         ArgumentNullException.ThrowIfNull(httpClient);
         ArgumentNullException.ThrowIfNull(options);
+        ArgumentNullException.ThrowIfNull(jsonSerializer);
         ArgumentNullException.ThrowIfNull(logger);
 
         if (options.Value is null)
@@ -38,6 +41,7 @@ public class OpenWeatherLoader : IOpenWeatherLoader
         _httpClient = httpClient;
         _apiKey = options.Value.ApiKey;
         _apiPath = options.Value.ApiUrl;
+        _jsonSerializer = jsonSerializer;
         _logger = logger;
     }
 
@@ -64,7 +68,7 @@ public class OpenWeatherLoader : IOpenWeatherLoader
 
         if (response.IsSuccessStatusCode)
         {
-            return JsonSerializer.Deserialize<WeatherForecast>(responseBody)!;
+            return _jsonSerializer.Deserialize<WeatherForecast>(responseBody)!;
         }
         else
         {
@@ -76,4 +80,5 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     private readonly string _apiKey;
     private readonly string _apiPath;
     private readonly ILogger<OpenWeatherLoader> _logger;
+    private readonly IJsonSerializer _jsonSerializer;
 }
