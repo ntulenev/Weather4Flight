@@ -2,6 +2,8 @@
 using Models;
 using OpenWeatherMap.Logic;
 
+using Microsoft.Extensions.Logging;
+
 namespace Logic;
 
 /// <summary>
@@ -14,11 +16,13 @@ public class WeatherForecastService : IWeatherForecastService
     /// </summary>
     /// <param name="openWeatherLoader">The loader used to get the weather forecast data.</param>
     /// <param name="forecastConverter">The converter used to convert the weather forecast data to a WeatherForecast object.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown if either the openWeatherLoader or forecastConverter parameter is null.</exception>
-    public WeatherForecastService(IOpenWeatherLoader openWeatherLoader, IForecastConverter forecastConverter)
+    /// <param name="logger">The logger used to log information and errors.</param>
+    /// <exception cref="System.ArgumentNullException">Thrown if either the openWeatherLoader, forecastConverter, or logger parameter is null.</exception>
+    public WeatherForecastService(IOpenWeatherLoader openWeatherLoader, IForecastConverter forecastConverter, ILogger<WeatherForecastService> logger)
     {
         _openWeatherLoader = openWeatherLoader ?? throw new ArgumentNullException(nameof(openWeatherLoader));
         _forecastConverter = forecastConverter ?? throw new ArgumentNullException(nameof(forecastConverter));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     /// <summary>
@@ -32,10 +36,21 @@ public class WeatherForecastService : IWeatherForecastService
     {
         ArgumentNullException.ThrowIfNull(cityName);
 
-        var forecast = await _openWeatherLoader.GetWeatherForecastAsync(cityName.Value, cancellationToken);
-        return _forecastConverter.Convert(forecast);
+        _logger.LogInformation("Loading weather forecast for {CityName}", cityName.Value);
+
+        try
+        {
+            var forecast = await _openWeatherLoader.GetWeatherForecastAsync(cityName.Value, cancellationToken);
+            return _forecastConverter.Convert(forecast);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error loading weather forecast for {CityName}", cityName.Value);
+            throw;
+        }
     }
 
     private readonly IOpenWeatherLoader _openWeatherLoader;
     private readonly IForecastConverter _forecastConverter;
+    private readonly ILogger<WeatherForecastService> _logger;
 }
