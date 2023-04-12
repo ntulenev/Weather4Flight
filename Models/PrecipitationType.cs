@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents the type of precipitation in weather data.
 /// </summary>
+[Flags]
 public enum PrecipitationType
 {
     /// <summary>
