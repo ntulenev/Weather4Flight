@@ -57,6 +57,7 @@
             (Precipitations switch
             {
                 PrecipitationType.None or
+                PrecipitationType.Clouds or
                 PrecipitationType.Drizzle or
                 PrecipitationType.Mist or
                 PrecipitationType.Smoke or

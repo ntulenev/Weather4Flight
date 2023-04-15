@@ -83,6 +83,10 @@ public enum PrecipitationType
     /// </summary>
     Tornado,
     /// <summary>
+    /// The type of precipitation is clouds, indicating that the sky is overcast but there is no precipitation.
+    /// </summary>
+    Clouds,
+    /// <summary>
     /// Other or unknown type of precipitation.
     /// </summary>
     Other

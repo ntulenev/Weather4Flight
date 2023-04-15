@@ -57,6 +57,7 @@ public class ForecastConverter : IForecastConverter
         return weatherCondition.ToLower() switch
         {
             "none" => PrecipitationType.None,
+            "clouds" => PrecipitationType.Clouds,
             "drizzle" => PrecipitationType.Drizzle,
             "rain" => PrecipitationType.Rain,
             "snow" => PrecipitationType.Snow,
