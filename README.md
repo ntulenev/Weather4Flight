@@ -35,36 +35,108 @@ This will return an array of weather forecast objects with drone flight recommen
       "date":"2023-04-15T09:00:00+00:00",
       "weather":{
          "temperature":{
-            "value":16.26,
+            "value":15.58,
             "category":"Normal"
          },
          "windSpeed":{
-            "value":6.88,
+            "value":7.09,
             "isStrongWind":false
          },
-         "precipitations":"Other"
+         "precipitations":"Clouds"
       },
-      "flightDecision":{
-         "recommendation":"BadForFlight",
-         "reasons":"ImportantPrecipitations"
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
       }
    },
    {
       "date":"2023-04-15T12:00:00+00:00",
       "weather":{
          "temperature":{
-            "value":16.47,
+            "value":15.98,
             "category":"Normal"
          },
          "windSpeed":{
-            "value":7.92,
+            "value":8.53,
             "isStrongWind":false
          },
-         "precipitations":"Other"
+         "precipitations":"Clouds"
       },
-      "flightDecision":{
-         "recommendation":"BadForFlight",
-         "reasons":"ImportantPrecipitations"
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
+      }
+   },
+   {
+      "date":"2023-04-15T15:00:00+00:00",
+      "weather":{
+         "temperature":{
+            "value":16.36,
+            "category":"Normal"
+         },
+         "windSpeed":{
+            "value":9.14,
+            "isStrongWind":false
+         },
+         "precipitations":"Clouds"
+      },
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
+      }
+   },
+   {
+      "date":"2023-04-15T18:00:00+00:00",
+      "weather":{
+         "temperature":{
+            "value":15.57,
+            "category":"Normal"
+         },
+         "windSpeed":{
+            "value":6.13,
+            "isStrongWind":false
+         },
+         "precipitations":"Clouds"
+      },
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
+      }
+   },
+   {
+      "date":"2023-04-15T21:00:00+00:00",
+      "weather":{
+         "temperature":{
+            "value":15.69,
+            "category":"Normal"
+         },
+         "windSpeed":{
+            "value":5.6,
+            "isStrongWind":false
+         },
+         "precipitations":"Clouds"
+      },
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
+      }
+   },
+   {
+      "date":"2023-04-16T00:00:00+00:00",
+      "weather":{
+         "temperature":{
+            "value":15.65,
+            "category":"Normal"
+         },
+         "windSpeed":{
+            "value":4.76,
+            "isStrongWind":false
+         },
+         "precipitations":"Clouds"
+      },
+      "flightDecisio":{
+         "recomendation":"GoodForFlight",
+         "reasons":"None"
       }
    },
    ...
