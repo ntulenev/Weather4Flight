@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeatherMap.Tests", "Ope
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{3EC79A25-E822-4415-8928-5BD02889B738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Tests", "Logic.Tests\Logic.Tests.csproj", "{43745BEA-226B-4B20-9183-F709407A94D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Tests", "Logic.Tests\Logic.Tests.csproj", "{43745BEA-226B-4B20-9183-F709407A94D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{1BDAEC69-95CB-4347-956C-231883C4AF01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{43745BEA-226B-4B20-9183-F709407A94D5}.Release|x64.Build.0 = Release|x64
 		{43745BEA-226B-4B20-9183-F709407A94D5}.Release|x64.ActiveCfg = Release|x64
 		{43745BEA-226B-4B20-9183-F709407A94D5}.Release|x64.Build.0 = Release|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Debug|x64.ActiveCfg = Debug|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Debug|x64.Build.0 = Debug|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Debug|x64.ActiveCfg = Debug|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Debug|x64.Build.0 = Debug|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Release|x64.ActiveCfg = Release|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Release|x64.Build.0 = Release|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Release|x64.ActiveCfg = Release|x64
+		{1BDAEC69-95CB-4347-956C-231883C4AF01}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
