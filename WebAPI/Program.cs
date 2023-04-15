@@ -4,6 +4,7 @@ using Models;
 using OpenWeatherMap.Configuration;
 using OpenWeatherMap.Configuration.Validation;
 using OpenWeatherMap.Logic;
+using OpenWeatherMap.Serialization;
 
 using Microsoft.Extensions.Options;
 
@@ -14,8 +15,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
 builder.Services.AddSingleton<IOpenWeatherLoader, OpenWeatherLoader>();
 builder.Services.AddSingleton<IForecastConverter, ForecastConverter>();
+builder.Services.AddSingleton<IJsonSerializer, SystemTextJsonSerializer>();
 builder.Services.Configure<OpenWeatherMapConfiguration>(builder.Configuration.GetSection("OpenWeatherMapConfiguration"));
 builder.Services.AddSingleton<IValidateOptions<OpenWeatherMapConfiguration>, OpenWeatherMapConfigurationValidator>();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -42,6 +45,4 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
 app.Run();
