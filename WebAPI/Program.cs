@@ -7,6 +7,9 @@ using OpenWeatherMap.Logic;
 using OpenWeatherMap.Serialization;
 
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http.Json;
+
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,10 @@ builder.Services.AddSingleton<IJsonSerializer, SystemTextJsonSerializer>();
 builder.Services.Configure<OpenWeatherMapConfiguration>(builder.Configuration.GetSection("OpenWeatherMapConfiguration"));
 builder.Services.AddSingleton<IValidateOptions<OpenWeatherMapConfiguration>, OpenWeatherMapConfigurationValidator>();
 builder.Services.AddHttpClient();
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 var app = builder.Build();
 
