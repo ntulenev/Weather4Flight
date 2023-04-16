@@ -30,117 +30,51 @@ https://localhost:7085/weather/valletta
 This will return an array of weather forecast objects with drone flight recommendations for each time slot.
 
 ```yaml
-[
-   {
-      "date":"2023-04-15T09:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":15.58,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":7.09,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   {
-      "date":"2023-04-15T12:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":15.98,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":8.53,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   {
-      "date":"2023-04-15T15:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":16.36,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":9.14,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   {
-      "date":"2023-04-15T18:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":15.57,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":6.13,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   {
-      "date":"2023-04-15T21:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":15.69,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":5.6,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   {
-      "date":"2023-04-16T00:00:00+00:00",
-      "weather":{
-         "temperature":{
-            "value":15.65,
-            "category":"Normal"
-         },
-         "windSpeed":{
-            "value":4.76,
-            "isStrongWind":false
-         },
-         "precipitations":"Clouds"
-      },
-      "flightDecisio":{
-         "recomendation":"GoodForFlight",
-         "reasons":"None"
-      }
-   },
-   ...
-]
+{
+  "data": [
+    {
+      "date": "2023-04-16T09:00:00+00:00",
+      "recomendation": "BadForFlight",
+      "reasons": "ImportantPrecipitations",
+      "precipitations": "Rain",
+      "temperature": 12.64,
+      "windSpeed": 6.44
+    },
+    {
+      "date": "2023-04-16T12:00:00+00:00",
+      "recomendation": "BadForFlight",
+      "reasons": "ImportantPrecipitations",
+      "precipitations": "Rain",
+      "temperature": 13.99,
+      "windSpeed": 9.9
+    },
+    {
+      "date": "2023-04-16T15:00:00+00:00",
+      "recomendation": "GoodForFlight",
+      "reasons": "None",
+      "precipitations": "Clouds",
+      "temperature": 14.91,
+      "windSpeed": 10.34
+    },
+    {
+      "date": "2023-04-16T18:00:00+00:00",
+      "recomendation": "GoodForFlight",
+      "reasons": "None",
+      "precipitations": "None",
+      "temperature": 14.39,
+      "windSpeed": 12.35
+    },
+    {
+      "date": "2023-04-16T21:00:00+00:00",
+      "recomendation": "GoodForFlight",
+      "reasons": "None",
+      "precipitations": "None",
+      "temperature": 14.29,
+      "windSpeed": 11.95
+    },
+    ...
+  ]
+}
 ```
 
 Each object in the array represents a weather forecast for a specific time slot. It includes the date and time of the forecast, as well as the weather information such as temperature, wind speed, and precipitation. It also includes a flightDecision object that provides a drone flight recommendation and the reasons for it.
