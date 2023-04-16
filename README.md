@@ -29,6 +29,17 @@ https://localhost:7085/weather/valletta
 
 This will return an array of weather forecast objects with drone flight recommendations for each time slot.
 
+
+| Property | Data Type | Description |
+| --- | --- | --- |
+| date | string | The date and time of the forecast in ISO 8601 format |
+| recommendation | string | A recommendation for flying based on the weather conditions. Possible values: "GoodForFlight" or "BadForFlight" |
+| reasons | string | The reasons for the recommendation. Possible values: "ImportantPrecipitations" if there is significant precipitation expected, or "None" if there are no significant weather conditions that would impact flying |
+| precipitations | string | The type of precipitation expected, if any. Possible values: "Rain", "Snow", "Hail", "Sleet", "Drizzle", "Mist", "Fog", "Smoke", "Haze", "Dust", "Sand", "Ash", "Squall", "Tornado", "Clear", or "Clouds" |
+| temperature | number | The temperature in degrees Celsius |
+| windSpeed | number | The wind speed in meters per second |
+
+
 ```yaml
 {
   "data": [
