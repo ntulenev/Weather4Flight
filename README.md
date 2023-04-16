@@ -88,7 +88,7 @@ This will return an array of weather forecast objects with drone flight recommen
 }
 ```
 
-Each object in the array represents a weather forecast for a specific time slot. It includes the date and time of the forecast, as well as the weather information such as temperature, wind speed, and precipitation. It also includes a flightDecision object that provides a drone flight recommendation and the reasons for it.
+Each object in the array represents a weather forecast for a specific time slot. It includes the date and time of the forecast, as well as the weather information such as temperature, wind speed, and precipitation. It also includes a flight decision that provides a drone flight recommendation and the reasons for it.
 
 ## Conclusion
 
