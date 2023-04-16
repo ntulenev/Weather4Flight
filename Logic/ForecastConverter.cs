@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.Extensions.Logging;
+using Models;
 using System.Globalization;
 using DTO = OpenWeatherMap.DTO;
 
@@ -9,6 +10,16 @@ namespace Logic;
 /// </summary>
 public class ForecastConverter : IForecastConverter
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ForecastConverter"/> class.
+    /// </summary>
+    /// <param name="logger">The logger to use for logging messages.</param>
+    /// <exception cref="ArgumentNullException">Thrown when the logger is null.</exception>
+    public ForecastConverter(ILogger<ForecastConverter> logger)
+    {
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
     /// <summary>
     /// Converts an OpenWeatherMap.DTO.WeatherForecast object to a Logic.Models.WeatherForecast object.
     /// </summary>
@@ -52,9 +63,9 @@ public class ForecastConverter : IForecastConverter
         return dateTimeOffset;
     }
 
-    private static PrecipitationType ConvertToPrecipitationType(string weatherCondition)
+    private PrecipitationType ConvertToPrecipitationType(string weatherCondition)
     {
-        var precipitationType =  weatherCondition.ToLower() switch
+        var precipitationType = weatherCondition.ToLower() switch
         {
             "none" or "clear" => PrecipitationType.None,
             "clouds" => PrecipitationType.Clouds,
@@ -71,8 +82,13 @@ public class ForecastConverter : IForecastConverter
             _ => PrecipitationType.Other,
         };
 
-        //TODO Add logger to warning new types of weatherCondition
+        if (precipitationType == PrecipitationType.Other)
+        {
+            _logger.LogWarning("Unknown weather condition: {weatherCondition}", weatherCondition);
+        }
 
         return precipitationType;
     }
+
+    private readonly ILogger<ForecastConverter> _logger;
 }

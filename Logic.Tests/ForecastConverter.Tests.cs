@@ -1,16 +1,32 @@
 using FluentAssertions;
 
+using Microsoft.Extensions.Logging;
+
+using Moq;
+
 using Models;
 using DTO = OpenWeatherMap.DTO;
 
 namespace Logic.Tests;
 public class ForecastConverterTests
 {
+    [Fact(DisplayName = "ForecastConverter should throw ArgumentNullException when logger is null")]
+    public void ForecastConverter_ShouldThrowArgumentNullException_WhenLoggerIsNull()
+    {
+        // Arrange & Act
+        Action action = () => _ = new ForecastConverter(null!);
+
+        //Assert
+        action.Should().Throw<ArgumentNullException>();
+    }
+
+
     [Fact(DisplayName = "ForecastConverter should be creatable")]
     public void ForecastConverter_ShouldBeCreatable()
     {
         // Act
-        Action action = () => _ = new ForecastConverter();
+        var logger = new Mock<ILogger<ForecastConverter>>();
+        Action action = () => _ = new ForecastConverter(logger.Object);
 
         // Assert
         action.Should().NotThrow();
@@ -20,7 +36,8 @@ public class ForecastConverterTests
     public void Convert_ShouldThrowArgumentNullException_WhenWeatherForecastIsNull()
     {
         // Arrange
-        var converter = new ForecastConverter();
+        var logger = new Mock<ILogger<ForecastConverter>>();
+        var converter = new ForecastConverter(logger.Object);
 
         // Arrange & Act
         Action action = () => _ = converter.Convert(null!);
@@ -33,7 +50,8 @@ public class ForecastConverterTests
     public void Convert_ShouldReturnExpectedWeatherForecast_WhenWeatherForecastIsNotNull()
     {
         // Arrange
-        var converter = new ForecastConverter();
+        var logger = new Mock<ILogger<ForecastConverter>>();
+        var converter = new ForecastConverter(logger.Object);
 
         var weatherDataList = new List<DTO.WeatherData>
         {
