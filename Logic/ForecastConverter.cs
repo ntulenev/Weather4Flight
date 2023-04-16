@@ -54,9 +54,9 @@ public class ForecastConverter : IForecastConverter
 
     private static PrecipitationType ConvertToPrecipitationType(string weatherCondition)
     {
-        return weatherCondition.ToLower() switch
+        var precipitationType =  weatherCondition.ToLower() switch
         {
-            "none" => PrecipitationType.None,
+            "none" or "clear" => PrecipitationType.None,
             "clouds" => PrecipitationType.Clouds,
             "drizzle" => PrecipitationType.Drizzle,
             "rain" => PrecipitationType.Rain,
@@ -70,5 +70,9 @@ public class ForecastConverter : IForecastConverter
             "thunderstorm" => PrecipitationType.Thunderstorm,
             _ => PrecipitationType.Other,
         };
+
+        //TODO Add logger to warning new types of weatherCondition
+
+        return precipitationType;
     }
 }
