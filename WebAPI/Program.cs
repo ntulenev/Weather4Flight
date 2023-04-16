@@ -5,6 +5,7 @@ using OpenWeatherMap.Configuration;
 using OpenWeatherMap.Configuration.Validation;
 using OpenWeatherMap.Logic;
 using OpenWeatherMap.Serialization;
+using WebAPI.DTO;
 
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http.Json;
@@ -36,13 +37,7 @@ app.MapGet("/weather/{cityName}",
 {
     var city = new CityName(cityName);
     var forecast = await weatherService.LoadWeatherForecastAsync(city, cancellationToken);
-    return forecast.WeatherConditions.Select(x =>
-            new
-            {
-                Date = x.Key,
-                Weather = x.Value,
-                FlightDecisio = x.Value.CreateFlightDecision()
-            });
+    return FlightForecast.CreateFromModel(forecast);
 });
 
 if (app.Environment.IsDevelopment())
