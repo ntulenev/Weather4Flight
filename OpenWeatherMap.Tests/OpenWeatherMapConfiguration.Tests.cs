@@ -7,6 +7,7 @@ namespace OpenWeatherMap.Tests;
 public class OpenWeatherMapConfigurationTests
 {
     [Fact(DisplayName = "OpenWeatherMapConfiguration should be instantiated with properties set correctly")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherMapConfiguration_Should_Be_Instantiated_With_Properties_Set_Correctly()
     {
         // Arrange

@@ -8,6 +8,7 @@ namespace OpenWeatherMap.Tests;
 public class CityTests
 {
     [Fact(DisplayName = "Valid JSON string should be deserialized into a City object")]
+    [Trait("Category", "Unit")]
     public void Valid_Json_String_Should_Be_Deserialized_Into_A_City_Object()
     {
         // Arrange

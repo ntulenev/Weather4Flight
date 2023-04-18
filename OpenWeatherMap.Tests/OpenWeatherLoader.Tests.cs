@@ -19,6 +19,7 @@ namespace OpenWeatherMap.Tests;
 public class OpenWeatherLoaderTests
 {
     [Fact(DisplayName = "OpenWeatherLoader should throw when httpClient is null")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Throw_When_HttpClient_Is_Null()
     {
         // Arrange
@@ -35,6 +36,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "OpenWeatherLoader should throw when options is null")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Throw_When_Options_Is_Null()
     {
         // Arrange
@@ -50,6 +52,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "OpenWeatherLoader should throw when jsonSerializer is null")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Throw_When_JsonSerializer_Is_Null()
     {
         // Arrange
@@ -66,6 +69,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "OpenWeatherLoader should throw when logger is null")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Throw_When_Logger_Is_Null()
     {
         // Arrange
@@ -83,6 +87,7 @@ public class OpenWeatherLoaderTests
 
 
     [Fact(DisplayName = "OpenWeatherLoader should throw when options value is not set")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Throw_When_Options_Value_Is_Not_Set()
     {
         // Arrange
@@ -100,6 +105,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "OpenWeatherLoader should create object when valid params are provided")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherLoader_Should_Create_Object_When_Valid_Params_Are_Provided()
     {
         // Arrange
@@ -117,6 +123,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should throw ArgumentNullException when city parameter is null")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Throw_ArgumentNullException_When_City_Parameter_Is_Null()
     {
         // Arrange
@@ -142,6 +149,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should throw ArgumentException when city parameter is empty")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Throw_ArgumentException_When_City_Parameter_Is_Empty()
     {
         // Arrange
@@ -167,6 +175,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should throw ArgumentException when city parameter is whitespace")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Throw_ArgumentException_When_City_Parameter_Is_Whitespace()
     {
         // Arrange
@@ -191,6 +200,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should throw OperationCanceledException when cancellation token is canceled")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Throw_OperationCanceledException_When_CancellationToken_Is_Canceled()
     {
         // Arrange
@@ -215,6 +225,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should throw OpenWeatherMapException when HTTP response is not successful")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Throw_OpenWeatherMapException_When_HTTP_Response_Is_Not_Successful()
     {
         // Arrange
@@ -257,6 +268,7 @@ public class OpenWeatherLoaderTests
     }
 
     [Fact(DisplayName = "GetWeatherForecastAsync should return WeatherForecast when HTTP response is successful")]
+    [Trait("Category", "Unit")]
     public async Task GetWeatherForecastAsync_Should_Return_WeatherForecast_When_HTTP_Response_Is_Successful()
     {
         // Arrange

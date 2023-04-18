@@ -13,6 +13,7 @@ namespace Logic.Tests;
 public class WeatherForecastServiceTests
 {
     [Fact(DisplayName = "Constructor should throw ArgumentNullException when openWeatherLoader is null")]
+    [Trait("Category", "Unit")]
     public void Constructor_ShouldThrowArgumentNullException_WhenOpenWeatherLoaderIsNull()
     {
         // Arrange
@@ -28,6 +29,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "Constructor should throw ArgumentNullException when forecastConverter is null")]
+    [Trait("Category", "Unit")]
     public void Constructor_ShouldThrowArgumentNullException_WhenForecastConverterIsNull()
     {
         // Arrange
@@ -43,6 +45,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "Constructor should throw ArgumentNullException when logger is null")]
+    [Trait("Category", "Unit")]
     public void Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull()
     {
         // Arrange
@@ -58,6 +61,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "WeatherForecastService object should be created with valid parameters")]
+    [Trait("Category", "Unit")]
     public void WeatherForecastService_ShouldBeCreated_WithValidParameters()
     {
         // Arrange
@@ -73,6 +77,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "LoadWeatherForecastAsync should throw ArgumentNullException when cityName is null")]
+    [Trait("Category", "Unit")]
     public async Task LoadWeatherForecastAsync_ShouldThrowArgumentNullException_WhenCityNameIsNull()
     {
         // Arrange
@@ -92,6 +97,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "LoadWeatherForecastAsync should rethrow exception thrown by GetWeatherForecastAsync")]
+    [Trait("Category", "Unit")]
     public async Task LoadWeatherForecastAsync_ShouldRethrowException_WhenGetWeatherForecastAsyncThrowsException()
     {
         // Arrange
@@ -117,6 +123,7 @@ public class WeatherForecastServiceTests
     }
 
     [Fact(DisplayName = "LoadWeatherForecastAsync should return valid weather forecast")]
+    [Trait("Category", "Unit")]
     public async Task LoadWeatherForecastAsync_ShouldReturnValidWeatherForecast()
     {
         // Arrange

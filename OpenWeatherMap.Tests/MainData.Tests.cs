@@ -7,6 +7,7 @@ namespace OpenWeatherMap.Tests;
 public class MainDataTests
 {
     [Fact(DisplayName = "Deserialize should return a MainData object when given valid JSON")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Return_MainData_Object_When_Given_Valid_JSON()
     {
         // Arrange

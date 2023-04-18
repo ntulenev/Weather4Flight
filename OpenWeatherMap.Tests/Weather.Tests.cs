@@ -9,6 +9,7 @@ namespace OpenWeatherMap.Tests;
 public class WeatherTests
 {
     [Fact(DisplayName = "Deserialize should return a Weather object when given valid JSON")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Return_Weather_Object_When_Given_Valid_JSON()
     {
         // Arrange

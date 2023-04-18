@@ -11,6 +11,7 @@ namespace Logic.Tests;
 public class ForecastConverterTests
 {
     [Fact(DisplayName = "ForecastConverter should throw ArgumentNullException when logger is null")]
+    [Trait("Category", "Unit")]
     public void ForecastConverter_ShouldThrowArgumentNullException_WhenLoggerIsNull()
     {
         // Arrange & Act
@@ -22,6 +23,7 @@ public class ForecastConverterTests
 
 
     [Fact(DisplayName = "ForecastConverter should be creatable")]
+    [Trait("Category", "Unit")]
     public void ForecastConverter_ShouldBeCreatable()
     {
         // Act
@@ -33,6 +35,7 @@ public class ForecastConverterTests
     }
 
     [Fact(DisplayName = "Convert should throw ArgumentNullException when weatherForecast is null")]
+    [Trait("Category", "Unit")]
     public void Convert_ShouldThrowArgumentNullException_WhenWeatherForecastIsNull()
     {
         // Arrange
@@ -47,6 +50,7 @@ public class ForecastConverterTests
     }
 
     [Fact(DisplayName = "Convert should return expected WeatherForecast when weatherForecast is not null")]
+    [Trait("Category", "Unit")]
     public void Convert_ShouldReturnExpectedWeatherForecast_WhenWeatherForecastIsNotNull()
     {
         // Arrange

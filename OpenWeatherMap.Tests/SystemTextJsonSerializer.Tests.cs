@@ -9,6 +9,7 @@ namespace OpenWeatherMap.Tests;
 public class SystemTextJsonSerializerTests
 {
     [Fact(DisplayName = "Deserialize should throw ArgumentNullException when json is null")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Throw_ArgumentNullException_When_Json_Is_Null()
     {
         // Arrange
@@ -23,6 +24,7 @@ public class SystemTextJsonSerializerTests
     }
 
     [Fact(DisplayName = "Deserialize should throw ArgumentException when json is empty")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Throw_ArgumentException_When_Json_Is_Empty()
     {
         // Arrange
@@ -37,6 +39,7 @@ public class SystemTextJsonSerializerTests
     }
 
     [Fact(DisplayName = "Deserialize should throw ArgumentException when json is whitespace")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Throw_ArgumentException_When_Json_Is_Whitespace()
     {
         // Arrange
@@ -51,6 +54,7 @@ public class SystemTextJsonSerializerTests
     }
 
     [Fact(DisplayName = "Deserialize should deserialize json string to object of type T")]
+    [Trait("Category", "Unit")]
     public void Deserialize_Should_Deserialize_Json_String_To_Object_Of_Type_T()
     {
         // Arrange

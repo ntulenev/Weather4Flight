@@ -7,6 +7,7 @@ namespace OpenWeatherMap.Tests;
 public class OpenWeatherMapExceptionTests
 {
     [Fact(DisplayName = "OpenWeatherMapException should be instantiated with a message")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherMapException_Should_Be_Instantiated_With_A_Message()
     {
         // Arrange
@@ -21,6 +22,7 @@ public class OpenWeatherMapExceptionTests
     }
 
     [Fact(DisplayName = "OpenWeatherMapException should be instantiated with a message and an inner exception")]
+    [Trait("Category", "Unit")]
     public void OpenWeatherMapException_Should_Be_Instantiated_With_A_Message_And_An_Inner_Exception()
     {
         // Arrange
