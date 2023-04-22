@@ -48,3 +48,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.Run();
+
+/// <summary>
+/// Need for correct work of IClassFixture<WebApplicationFactory<Program>> in WebAPI.Tests 
+/// </summary>
+public partial class Program { }
