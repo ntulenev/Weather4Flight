@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using FluentAssertions;
 
@@ -27,6 +28,7 @@ public class FlightForecastTests
     [Trait("Category", "Unit")]
     public void CreateFromModel_WithValidWeatherForecast_ReturnsExpectedFlightForecast()
     {
+        // Arrange
         var cityName = new CityName("New York");
         var weatherConditions = new Dictionary<DateTimeOffset, Weather>
         {
@@ -58,5 +60,32 @@ public class FlightForecastTests
         items[1].Precipitations.Should().Be(original[1].Value.Precipitations);
         items[1].Reasons.Should().Be(NoFlightReasons.None);
 
+    }
+
+    [Fact(DisplayName = "Can serialize WeatherForecast to JSON")]
+    [Trait("Category", "Unit")]
+    public void CanSerializeToJson()
+    {
+        // Arrange
+        var cityName = new CityName("New York");
+        var weatherConditions = new Dictionary<DateTimeOffset, Weather>
+        {
+            { new DateTimeOffset(2023, 4, 19, 10, 0, 0, TimeSpan.Zero), new Weather(new Temperature(20), new WindSpeed(10), PrecipitationType.Rain) },
+            { new DateTimeOffset(2023, 4, 20, 10, 0, 0, TimeSpan.Zero), new Weather(new Temperature(22), new WindSpeed(12), PrecipitationType.None) }
+        };
+
+        var weatherForecast = new WeatherForecast(cityName, weatherConditions);
+        var flightForecast = FlightForecast.CreateFromModel(weatherForecast);
+
+        var expectedJson = "{\"data\":[{\"date\":\"2023-04-19T10:00:00+00:00\",\"recomendation\":\"BadForFlight\",\"reasons\":\"ImportantPrecipitations\",\"precipitations\":\"Rain\",\"temperature\":20,\"windSpeed\":10},{\"date\":\"2023-04-20T10:00:00+00:00\",\"recomendation\":\"GoodForFlight\",\"reasons\":\"None\",\"precipitations\":\"None\",\"temperature\":22,\"windSpeed\":12}]}";
+        
+        // Act
+        var json = JsonSerializer.Serialize(flightForecast, new JsonSerializerOptions
+        {
+            Converters = { new JsonStringEnumConverter() }
+        });
+
+        // Assert
+        json.Should().Be(expectedJson);
     }
 }
