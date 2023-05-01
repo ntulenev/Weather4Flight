@@ -11,12 +11,12 @@
         /// <remarks>
         /// This property is required and must be set to a valid API key in order to use the OpenWeatherMap API.
         /// </remarks>
-        public string ApiKey { get; set; } = default!;
+        public string ApiKey { get; init; } = default!;
 
         /// <summary>
         /// API template for get data from OpenWeatherMap API.
         /// </summary>
-        public string ApiUrl { get; set; } = default!;
+        public string ApiUrl { get; init; } = default!;
     }
 
 }
