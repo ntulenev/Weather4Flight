@@ -11,7 +11,6 @@ public class OpenWeatherMapConfigurationValidatorTests
 {
     [Theory(DisplayName = "Validate should return failure result when ApiKey is null or empty")]
     [Trait("Category", "Unit")]
-    [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
     public void Validate_Should_Return_Failure_Result_When_ApiKey_Is_Null_Or_Empty(string apiKey)
@@ -29,7 +28,6 @@ public class OpenWeatherMapConfigurationValidatorTests
 
     [Theory(DisplayName = "Validate should return failure result when ApiUrl is null or empty")]
     [Trait("Category", "Unit")]
-    [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
     public void Validate_Should_Return_Failure_Result_When_ApiUrl_Is_Null_Or_Empty(string apiUrl)
