@@ -12,6 +12,7 @@ public interface IWeatherForecastService
     /// </summary>
     /// <param name="cityName">The name of the city to load the forecast for.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task that represents the asynchronous operation. The result of the task contains the weather forecast for the specified city.</returns>
+    /// <returns>A task that represents the asynchronous operation. 
+    /// The result of the task contains the weather forecast for the specified city.</returns>
     Task<WeatherForecast> LoadWeatherForecastAsync(CityName cityName, CancellationToken cancellationToken);
 }

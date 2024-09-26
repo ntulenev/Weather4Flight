@@ -35,7 +35,7 @@ public class FlightForecast
                                   {
                                       Date = data.Key,
                                       Reasons = flightData.Reasons,
-                                      Recomendation = flightData.Recomendation,
+                                      Recommendation = flightData.Recommendation,
                                       Temperature = Value.Temperature.Value,
                                       WindSpeed = Value.WindSpeed.Value,
                                       Precipitations = Value.Precipitations

@@ -17,14 +17,14 @@ public class WeatherFlightDataTests
         var weatherFlightData = new WeatherFlightData
         {
             Date = new DateTimeOffset(2023, 4, 19, 10, 0, 0, TimeSpan.Zero),
-            Recomendation = FlightRecomendation.GoodForFlight,
+            Recommendation = FlightRecommendation.GoodForFlight,
             Reasons = NoFlightReasons.None,
             Precipitations = PrecipitationType.Rain,
             Temperature = 15.5m,
             WindSpeed = 25.0m
         };
 
-        var expectedJson = "{\"date\":\"2023-04-19T10:00:00+00:00\",\"recomendation\":\"GoodForFlight\",\"reasons\":\"None\",\"precipitations\":\"Rain\",\"temperature\":15.5,\"windSpeed\":25.0}";
+        var expectedJson = "{\"date\":\"2023-04-19T10:00:00+00:00\",\"recommendation\":\"GoodForFlight\",\"reasons\":\"None\",\"precipitations\":\"Rain\",\"temperature\":15.5,\"windSpeed\":25.0}";
 
         // Act
         var json = JsonSerializer.Serialize(weatherFlightData, new JsonSerializerOptions

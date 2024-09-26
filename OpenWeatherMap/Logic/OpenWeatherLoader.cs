@@ -47,7 +47,8 @@ public class OpenWeatherLoader : IOpenWeatherLoader
     /// <inheritdoc/>
     /// <exception cref="System.ArgumentNullException">Thrown when the city parameter is null.</exception>
     /// <exception cref="System.ArgumentException">Thrown when the city parameter is empty or whitespace.</exception>
-    /// <exception cref="OpenWeatherMapException">Thrown when an error occurs while retrieving weather data from the OpenWeatherMap API.</exception>
+    /// <exception cref="OpenWeatherMapException">Thrown when an error occurs while retrieving weather data 
+    /// from the OpenWeatherMap API.</exception>
 
     public async Task<WeatherForecast> GetWeatherForecastAsync(string city, CancellationToken cancellationToken = default)
     {
@@ -68,7 +69,9 @@ public class OpenWeatherLoader : IOpenWeatherLoader
         HttpResponseMessage response = await _httpClient.GetAsync(url, cancellationToken);
         var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
 
-        _logger.LogInformation("Response IsSuccesess : {IsSuccessStatusCode} : {responseBody}", response.IsSuccessStatusCode, responseBody);
+        _logger.LogInformation("Response IsSuccess : {IsSuccessStatusCode} : {responseBody}", 
+            response.IsSuccessStatusCode, 
+            responseBody);
 
         if (response.IsSuccessStatusCode)
         {

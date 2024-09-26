@@ -18,8 +18,8 @@ public class WeatherFlightData
     /// <summary>
     /// Gets or sets the flight recommendation.
     /// </summary>
-    [JsonPropertyName("recomendation")]
-    public FlightRecomendation Recomendation { get; set; }
+    [JsonPropertyName("recommendation")]
+    public FlightRecommendation Recommendation { get; set; }
 
     /// <summary>
     /// Gets or sets the reasons for the flight recommendation.

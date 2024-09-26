@@ -137,28 +137,28 @@ public class WeatherForecastServiceTests
         var dtoTest = new OpenWeatherMap.DTO.WeatherForecast
         {
             City = new OpenWeatherMap.DTO.City { Name = cityName.Value },
-            WeatherDataList = new List<OpenWeatherMap.DTO.WeatherData>
-                                   {
+            WeatherDataList =
+                                   [
                                        new OpenWeatherMap.DTO.WeatherData
                                        {
-                                            DateText = "123",
+                                             DateText = "123",
                                              Main = new OpenWeatherMap.DTO.MainData
                                              {
                                                   Temp = 1
                                              },
-                                             Weather = new List<OpenWeatherMap.DTO.Weather>
-                                             {
+                                             Weather =
+                                             [
                                                  new OpenWeatherMap.DTO.Weather
                                                  {
                                                       Main = "test"
                                                  }
-                                             },
+                                             ],
                                               Wind = new OpenWeatherMap.DTO.WindData
                                               {
                                                    Speed = 1
                                               }
                                        }
-                                   }
+                                   ]
         };
 
         openWeatherLoaderMock.Setup(x => x.GetWeatherForecastAsync(cityName.Value, cancellationToken))

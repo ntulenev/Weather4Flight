@@ -9,7 +9,7 @@ public class FlightDecisionTests
     public void BadForFlight_ReasonsMustBeSpecified()
     {
         // Arrange
-        FlightRecomendation recommendation = FlightRecomendation.BadForFlight;
+        FlightRecommendation recommendation = FlightRecommendation.BadForFlight;
         NoFlightReasons reasons = NoFlightReasons.None;
 
         // Act
@@ -24,14 +24,14 @@ public class FlightDecisionTests
     public void GoodForFlight_ShouldBeCreated()
     {
         // Arrange
-        FlightRecomendation recommendation = FlightRecomendation.GoodForFlight;
+        FlightRecommendation recommendation = FlightRecommendation.GoodForFlight;
         NoFlightReasons reasons = NoFlightReasons.ImportantPrecipitations;
 
         // Act
         var result = new FlightDecision(recommendation, reasons);
 
         // Assert
-        result.Recomendation.Should().Be(recommendation);
+        result.Recommendation.Should().Be(recommendation);
         result.Reasons.Should().Be(reasons);
     }
 }

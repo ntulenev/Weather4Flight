@@ -59,13 +59,12 @@ public class ForecastConverterTests
 
         var weatherDataList = new List<DTO.WeatherData>
         {
-            new DTO.WeatherData
-            {
+            new() {
                 DateText = "2023-04-13 12:00:00",
                 Main = new DTO.MainData {  Temp = 20 },
                 Wind = new DTO.WindData { Speed = 10.0 },
-                Weather = new List<DTO.Weather>
-                {
+                Weather =
+                [
                     new DTO.Weather
                     {
                          Main = "sleet"
@@ -78,20 +77,19 @@ public class ForecastConverterTests
                     {
                         Main = "123123123"
                     }
-                }
+                ]
             },
-            new DTO.WeatherData
-            {
+            new() {
                 DateText = "2023-04-14 12:00:00",
                 Main = new DTO.MainData {  Temp = 21 },
                 Wind = new DTO.WindData { Speed = 15.0 },
-                Weather = new List<DTO.Weather>
-                {
+                Weather =
+                [
                     new DTO.Weather
                     {
                          Main = "none"
                     }
-                }
+                ]
             }
         };
 
@@ -105,8 +103,14 @@ public class ForecastConverterTests
             new CityName("Seattle"),
             new Dictionary<DateTimeOffset, Weather>
             {
-                { new DateTimeOffset(2023, 4, 13, 12, 0, 0, TimeSpan.Zero), new Weather(new Temperature(20), new WindSpeed(10), PrecipitationType.Squalls | PrecipitationType.FreezingRain | PrecipitationType.Other) },
-                { new DateTimeOffset(2023, 4, 14, 12, 0, 0, TimeSpan.Zero), new Weather(new Temperature(21), new WindSpeed(15), PrecipitationType.None) }
+                { new DateTimeOffset(2023, 4, 13, 12, 0, 0, TimeSpan.Zero), 
+                  new Weather(new Temperature(20), 
+                  new WindSpeed(10), PrecipitationType.Squalls | PrecipitationType.FreezingRain | PrecipitationType.Other) },
+                { new DateTimeOffset(2023, 4, 14, 12, 0, 0, TimeSpan.Zero), 
+                  new Weather(new Temperature(21), 
+                  new WindSpeed(15), 
+                  PrecipitationType.None) 
+                }
             }
         );
 

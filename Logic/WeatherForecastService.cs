@@ -15,10 +15,15 @@ public class WeatherForecastService : IWeatherForecastService
     /// Initializes a new instance of the WeatherForecastService class with the specified dependencies.
     /// </summary>
     /// <param name="openWeatherLoader">The loader used to get the weather forecast data.</param>
-    /// <param name="forecastConverter">The converter used to convert the weather forecast data to a WeatherForecast object.</param>
+    /// <param name="forecastConverter">The converter used to convert the weather forecast 
+    /// data to a WeatherForecast object.</param>
     /// <param name="logger">The logger used to log information and errors.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown if either the openWeatherLoader, forecastConverter, or logger parameter is null.</exception>
-    public WeatherForecastService(IOpenWeatherLoader openWeatherLoader, IForecastConverter forecastConverter, ILogger<WeatherForecastService> logger)
+    /// <exception cref="System.ArgumentNullException">Thrown if either the 
+    /// openWeatherLoader, forecastConverter, or logger parameter is null.</exception>
+    public WeatherForecastService(
+        IOpenWeatherLoader openWeatherLoader, 
+        IForecastConverter forecastConverter, 
+        ILogger<WeatherForecastService> logger)
     {
         _openWeatherLoader = openWeatherLoader ?? throw new ArgumentNullException(nameof(openWeatherLoader));
         _forecastConverter = forecastConverter ?? throw new ArgumentNullException(nameof(forecastConverter));

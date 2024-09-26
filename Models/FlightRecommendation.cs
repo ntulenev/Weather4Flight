@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the recommendation regarding whether a flight should be taken or not.
 /// </summary>
-public enum FlightRecomendation
+public enum FlightRecommendation
 {
     /// <summary>
     /// Indicates that conditions are good for flying.

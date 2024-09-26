@@ -58,7 +58,7 @@ public class ForecastConverter : IForecastConverter
                     DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
         // Convert the DateTime to a DateTimeOffset object with the UTC offset
-        DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTimeUtc, TimeSpan.Zero);
+        DateTimeOffset dateTimeOffset = new(dateTimeUtc, TimeSpan.Zero);
 
         return dateTimeOffset;
     }

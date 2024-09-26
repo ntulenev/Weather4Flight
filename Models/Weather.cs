@@ -42,7 +42,8 @@
         /// <summary>
         /// Determines whether flying is recommended based on the weather conditions.
         /// </summary>
-        /// <returns>A <see cref="FlightDecision"/> object indicating whether flying is recommended, and if not, the reasons why.</returns>
+        /// <returns>A <see cref="FlightDecision"/> object indicating whether flying is recommended, 
+        /// and if not, the reasons why.</returns>
         public FlightDecision CreateFlightDecision()
         {
             var reasons = (Temperature.Category switch
@@ -69,8 +70,8 @@
             });
 
             return reasons == NoFlightReasons.None
-                ? new FlightDecision(FlightRecomendation.GoodForFlight, NoFlightReasons.None)
-                : new FlightDecision(FlightRecomendation.BadForFlight, reasons);
+                ? new FlightDecision(FlightRecommendation.GoodForFlight, NoFlightReasons.None)
+                : new FlightDecision(FlightRecommendation.BadForFlight, reasons);
         }
 
     }

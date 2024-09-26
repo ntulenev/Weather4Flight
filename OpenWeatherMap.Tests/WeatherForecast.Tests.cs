@@ -11,7 +11,8 @@ public class WeatherForecastTests
     public void Deserialize_Should_Return_WeatherForecast_Object_When_Given_Valid_JSON()
     {
         // Arrange
-        var json = "{\"city\": {\"name\": \"London\"}, \"list\": [{\"dt_txt\": \"2023-04-11 12:00:00\", \"wind\": {\"speed\": 3.2}, \"main\": {\"temp\": 20.5}, \"weather\": [{\"main\": \"Clouds\"}]}]}";
+        var json = "{\"city\": {\"name\": \"London\"}, \"list\": [{\"dt_txt\": \"2023-04-11 12:00:00\", " +
+            "\"wind\": {\"speed\": 3.2}, \"main\": {\"temp\": 20.5}, \"weather\": [{\"main\": \"Clouds\"}]}]}";
 
         // Act
         var weatherForecast = JsonSerializer.Deserialize<WeatherForecast>(json);

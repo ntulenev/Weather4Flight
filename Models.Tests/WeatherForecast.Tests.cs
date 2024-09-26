@@ -9,7 +9,7 @@ public class WeatherForecastTests
     public void WeatherForecast_Constructor_ShouldThrowArgumentNullException_WhenCityNameIsNull()
     {
         // Act & Assert
-        var exception = Record.Exception(() => new WeatherForecast(null!, new Dictionary<DateTimeOffset, Weather>()));
+        var exception = Record.Exception(() => new WeatherForecast(null!, []));
 
         // Assert
         exception.Should().BeOfType<ArgumentNullException>();

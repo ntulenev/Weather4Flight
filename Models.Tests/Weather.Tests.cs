@@ -18,7 +18,7 @@ public class WeatherTests
         var decision = weather.CreateFlightDecision();
 
         // Assert
-        decision.Recomendation.Should().Be(FlightRecomendation.GoodForFlight);
+        decision.Recommendation.Should().Be(FlightRecommendation.GoodForFlight);
         decision.Reasons.Should().Be(NoFlightReasons.None);
     }
 
@@ -36,8 +36,9 @@ public class WeatherTests
         var decision = weather.CreateFlightDecision();
 
         // Assert
-        decision.Recomendation.Should().Be(FlightRecomendation.BadForFlight);
-        decision.Reasons.Should().Be(NoFlightReasons.ColdTemperature | NoFlightReasons.Wind | NoFlightReasons.ImportantPrecipitations);
+        decision.Recommendation.Should().Be(FlightRecommendation.BadForFlight);
+        decision.Reasons.Should().Be(
+            NoFlightReasons.ColdTemperature | NoFlightReasons.Wind | NoFlightReasons.ImportantPrecipitations);
     }
 
     [Fact(DisplayName = "CreateWeather with null temperature")]
