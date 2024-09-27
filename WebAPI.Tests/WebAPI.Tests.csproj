@@ -8,6 +8,9 @@
     <Platforms>x64</Platforms>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
+	<NuGetAudit>true</NuGetAudit>
+	<NuGetAuditMode>all</NuGetAuditMode>
+	<NuGetAuditLevel>low</NuGetAuditLevel>
   </PropertyGroup>
 
   <ItemGroup>

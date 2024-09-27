@@ -70,14 +70,16 @@ public class FlightForecastTests
         var cityName = new CityName("New York");
         var weatherConditions = new Dictionary<DateTimeOffset, Weather>
         {
-            { new DateTimeOffset(2023, 4, 19, 10, 0, 0, TimeSpan.Zero), 
+            { 
+              new DateTimeOffset(2023, 4, 19, 10, 0, 0, TimeSpan.Zero), 
               new Weather(
                   new Temperature(20), 
                   new WindSpeed(10), 
                   PrecipitationType.Rain) 
             },
-            { new DateTimeOffset(2023, 4, 20, 10, 0, 0, TimeSpan.Zero), 
-                new Weather(
+            { 
+              new DateTimeOffset(2023, 4, 20, 10, 0, 0, TimeSpan.Zero), 
+              new Weather(
                     new Temperature(22), 
                     new WindSpeed(12), 
                     PrecipitationType.None) 
