@@ -13,35 +13,35 @@ public class WeatherFlightData
     /// Gets or sets the date and time of the weather flight data.
     /// </summary>
     [JsonPropertyName("date")]
-    public DateTimeOffset Date { get; set; }
+    public required DateTimeOffset Date { get; init; }
 
     /// <summary>
     /// Gets or sets the flight recommendation.
     /// </summary>
     [JsonPropertyName("recommendation")]
-    public FlightRecommendation Recommendation { get; set; }
+    public required FlightRecommendation Recommendation { get; init; }
 
     /// <summary>
     /// Gets or sets the reasons for the flight recommendation.
     /// </summary>
     [JsonPropertyName("reasons")]
-    public NoFlightReasons Reasons { get; set; }
+    public required NoFlightReasons Reasons { get; init; }
 
     /// <summary>
     /// Gets or sets the precipitation type.
     /// </summary>
     [JsonPropertyName("precipitations")]
-    public PrecipitationType Precipitations { get; set; }
+    public required PrecipitationType Precipitations { get; init; }
 
     /// <summary>
     /// Gets or sets the temperature.
     /// </summary>
     [JsonPropertyName("temperature")]
-    public decimal Temperature { get; set; }
+    public required decimal Temperature { get; init; }
 
     /// <summary>
     /// Gets or sets the wind speed.
     /// </summary>
     [JsonPropertyName("windSpeed")]
-    public decimal WindSpeed { get; set; }
+    public required decimal WindSpeed { get; init; }
 }
